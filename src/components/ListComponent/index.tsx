@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Container, Col, Table} from 'react-bootstrap'
-
 interface Props {
   id: number;
   name: string;

@@ -1,8 +1,9 @@
 import React from 'react'
 
-import { Formik, Field, Form, FormikHelpers } from 'formik';
+import { Formik, FormikHelpers, Field, Form } from 'formik';
 
 import { registerSchema } from '../../utils/yup'
+import { Button, Row, Col } from 'react-bootstrap';
 
 interface Values {
   name: string;
@@ -19,12 +20,10 @@ const FormValidation = () => {
         initialValues={{
           name: '',
           lastName: '',
-          age: 0,
+          age: '',
           schooling: '',
           skills: '',
         }}
-
-        validationSchema={ registerSchema }
         onSubmit={(
           values: Values,
           { setSubmitting }: FormikHelpers<Values>
@@ -34,24 +33,57 @@ const FormValidation = () => {
             setSubmitting(false);
           }, 500);
         }}
-      >
+        validationSchema={registerSchema}
+        >
         <Form>
-          <label htmlFor="firstName">Nome</label>
-          <Field id="name" name="name" placeholder="John" />
-
-          <label htmlFor="lastName">Sobrenome</label>
-          <Field id="lastName" name="lastName" placeholder="Doe" />
-
-          <label htmlFor="lastName">Idade</label>
-          <Field id="age" name="age" placeholder="Doe" />
-
-          <label htmlFor="lastName">Escolaridade</label>
-          <Field id="schooling" name="schooling" placeholder="Doe" />
-
-          <label htmlFor="lastName">Habilidades</label>
-          <Field id="skills" name="skills" placeholder="Doe" />
-
-          <button type="submit">Submit</button>
+          <Row>  
+            <Col>
+              <Field 
+                id="name" 
+                name="name" 
+                placeholder="Nome"
+              />
+            </Col>
+            <Col>       
+              <Field 
+                id="lastName"
+                name="lastName" 
+                placeholder="Sobrenome"
+              />
+            </Col>
+          </Row>
+          <Row>  
+            <Col>
+              <Field
+                id="age" 
+                name="age" 
+                placeholder="Idade"
+              />
+            </Col>
+            <Col>       
+              <Field
+                id="schooling" 
+                name="schooling" 
+                placeholder="Escolaridade"    
+              />
+            </Col>
+          </Row>
+          <Row>  
+            <Col>
+              <Field
+                style={{"margin": '0.2rem', "resize":"none", "height": "10rem", "width":"100%"}} 
+                as="textarea" 
+                id="skills"
+                name="skills"
+                placeholder="Habilidades"
+                />
+            </Col>
+          </Row>
+          <Row>
+            <Col style={{"margin": '0.2rem'}}>
+              <Button variant='dark' type='submit'> Enviar </Button>
+            </Col>
+          </Row>
         </Form>
       </Formik>
     </> 

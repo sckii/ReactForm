@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../../components/Header';
 import FormValidation from '../../components/Form';
+import { FormContainer } from './styles';
 
 function Register() {
   return (
@@ -10,7 +11,9 @@ function Register() {
         buttonName="Lista"
         pageName="Registrar"
       />
-      <FormValidation />
+      <FormContainer>
+        <FormValidation />
+      </FormContainer>
     </>
   )
 }

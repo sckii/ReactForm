@@ -14,7 +14,7 @@ function List() {
         pageName="Lista"
       />
       <ListContainer>
-        <Table striped hover variant="light">
+        <Table style={{"font-size":"0.96rem"}} striped hover bordered variant="light">
           <thead>
             <tr>
               <th>#</th>
