@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header';
 import ListComponent from '../../components/ListComponent';
 import { Table } from 'react-bootstrap';
 import { ListContainer } from './styles';
 
+import {registros} from '../../data/db.json'
+
+import axios from 'axios'
+
 
 function List() {
+
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    axios.get('http://localhost:4000/registros')
+      .then(res => {
+        const dataBase = res.data
+        console.log(dataBase)
+        return setData(dataBase)
+      })
+  }, [])
+
   return (
     <>
       <Header 
@@ -13,28 +29,35 @@ function List() {
         buttonName="Registrar"
         pageName="Lista"
       />
-      <ListContainer>
-        <Table style={{"font-size":"0.96rem"}} striped hover bordered variant="light">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Nome</th>
-              <th>Sobrenome</th>
-              <th>Age</th>
-              <th>Escolaridade</th>
-              <th>Habilidades</th>          
-            </tr>
-          </thead>
-          <ListComponent
-            id={1}
-            name="Samuel"
-            last="Rodigues"
-            age={17}
-            schooling="Ensino médio"
-            skills="HTML, CSS, JS, TS, Reactjs"
-          />
-        </Table>
-      </ListContainer>
+      { data.length !== 0 ? 
+        <ListContainer>
+          <Table style={{"font-size":"0.96rem"}} striped hover bordered variant="light">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>Idade</th>
+                <th>Escolaridade</th>
+                <th>Habilidades</th>          
+              </tr>
+            </thead>
+            { registros.map((data: any) => {
+              return (
+                <ListComponent
+                  key={data.id}
+                  name={data.name}
+                  last={data.last}
+                  age={data.age}
+                  schooling={data.schooling}
+                  skills={data.skills}
+                />
+              )
+            })}
+              
+              </Table>
+        </ListContainer>
+        : <ListContainer><h3> Nenhum item cadastrado </h3></ListContainer>
+      }
     </>
   )
 }

@@ -8,7 +8,7 @@ const registerSchema = yup.object().shape({
     .string()
     .required(),
   age: yup 
-    .number()
+    .string()
     .required(),
   schooling: yup
     .string()

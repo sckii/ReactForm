@@ -4,11 +4,13 @@ import { Formik, FormikHelpers, Field, Form } from 'formik';
 
 import { registerSchema } from '../../utils/yup'
 import { Button, Row, Col } from 'react-bootstrap';
+import axios from 'axios';
+import {uuid} from 'uuidv4'
 
 interface Values {
   name: string;
   lastName: string;
-  age: number;
+  age: string;
   schooling: string;
   skills: string
 }
@@ -29,7 +31,17 @@ const FormValidation = () => {
           { setSubmitting }: FormikHelpers<Values>
         ) => {
           setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
+            const { name, lastName, age, schooling, skills} = values
+            axios.post('http://localhost:4000/registros', {
+              "id": uuid(),
+              "name": name,
+              "lastName": lastName,
+              "age": age,
+              "schooling": schooling,
+              "skills": skills,
+            }).then(res => {
+              console.log(res)
+            })
             setSubmitting(false);
           }, 500);
         }}

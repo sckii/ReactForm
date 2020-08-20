@@ -14,7 +14,6 @@ const ListComponent: React.FC<Props> = ({ id, name, last, age, schooling, skills
     <>
       <tbody>
         <tr>
-          <td>{ id }</td>
           <td>{ name }</td>
           <td>{ last }</td>
           <td>{ age }</td>
