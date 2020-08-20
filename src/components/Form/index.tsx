@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Formik, FormikHelpers, Field, Form } from 'formik';
 
 import { registerSchema } from '../../utils/yup'
-import { Button, Row, Col } from 'react-bootstrap';
+import { Button, Row, Col, Alert } from 'react-bootstrap';
 import axios from 'axios';
 import {uuid} from 'uuidv4'
+import { PageContainer } from './styles';
 
 interface Values {
   name: string;
@@ -16,8 +17,13 @@ interface Values {
 }
 
 const FormValidation = () => {
+  const [visible, setVisible] = useState(false)
+  
+  
+
   return (
-    <>
+    <PageContainer>
+      { visible === true ? <Alert variant='success'> Registrado com sucesso </Alert> : <></>}
       <Formik
         initialValues={{
           name: '',
@@ -32,6 +38,7 @@ const FormValidation = () => {
         ) => {
           setTimeout(() => {
             const { name, lastName, age, schooling, skills} = values
+            
             axios.post('http://localhost:4000/registros', {
               "id": uuid(),
               "name": name,
@@ -42,8 +49,9 @@ const FormValidation = () => {
             }).then(res => {
               console.log(res)
             })
+            setVisible(!visible)
             setSubmitting(false);
-          }, 500);
+          }, 1000);
         }}
         validationSchema={registerSchema}
         >
@@ -54,6 +62,7 @@ const FormValidation = () => {
                 id="name" 
                 name="name" 
                 placeholder="Nome"
+                required  
               />
             </Col>
             <Col>       
@@ -61,12 +70,14 @@ const FormValidation = () => {
                 id="lastName"
                 name="lastName" 
                 placeholder="Sobrenome"
+                required  
               />
             </Col>
           </Row>
           <Row>  
             <Col>
               <Field
+                required  
                 id="age" 
                 name="age" 
                 placeholder="Idade"
@@ -74,6 +85,7 @@ const FormValidation = () => {
             </Col>
             <Col>       
               <Field
+                required  
                 id="schooling" 
                 name="schooling" 
                 placeholder="Escolaridade"    
@@ -83,6 +95,7 @@ const FormValidation = () => {
           <Row>  
             <Col>
               <Field
+                required  
                 style={{"margin": '0.2rem', "resize":"none", "height": "10rem", "width":"100%"}} 
                 as="textarea" 
                 id="skills"
@@ -98,7 +111,8 @@ const FormValidation = () => {
           </Row>
         </Form>
       </Formik>
-    </> 
+      
+    </PageContainer> 
   );
 }
 
