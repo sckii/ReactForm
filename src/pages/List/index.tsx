@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header';
 import ListComponent from '../../components/ListComponent';
-import { Table } from 'react-bootstrap';
+import { Table, Spinner } from 'react-bootstrap';
 import { ListContainer } from './styles';
 
 import {registros} from '../../data/db.json'
@@ -31,7 +31,7 @@ function List() {
       />
       { data.length !== 0 ? 
         <ListContainer>
-          <Table style={{"font-size":"0.96rem"}} striped hover bordered variant="light">
+          <Table style={{"font-size":"0.8rem"}} striped hover bordered variant="light">
             <thead>
               <tr>
                 <th>Nome</th>
@@ -46,7 +46,7 @@ function List() {
                 <ListComponent
                   key={data.id}
                   name={data.name}
-                  last={data.last}
+                  last={data.lastName}
                   age={data.age}
                   schooling={data.schooling}
                   skills={data.skills}
@@ -56,7 +56,7 @@ function List() {
               
               </Table>
         </ListContainer>
-        : <ListContainer><h3> Nenhum item cadastrado </h3></ListContainer>
+        : <ListContainer><h3> Nenhum item cadastrado </h3> <Spinner animation="border" /></ListContainer>
       }
     </>
   )

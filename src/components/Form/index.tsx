@@ -7,6 +7,7 @@ import { Button, Row, Col, Alert } from 'react-bootstrap';
 import axios from 'axios';
 import {uuid} from 'uuidv4'
 import { PageContainer } from './styles';
+import { useHistory } from 'react-router-dom';
 
 interface Values {
   name: string;
@@ -19,6 +20,8 @@ interface Values {
 const FormValidation = () => {
   const [visible, setVisible] = useState(false)
   
+  let history = useHistory()
+    
   
 
   return (
@@ -36,6 +39,7 @@ const FormValidation = () => {
           values: Values,
           { setSubmitting }: FormikHelpers<Values>
         ) => {
+          setVisible(!visible);
           setTimeout(() => {
             const { name, lastName, age, schooling, skills} = values
             
@@ -49,9 +53,9 @@ const FormValidation = () => {
             }).then(res => {
               console.log(res)
             })
-            setVisible(!visible)
             setSubmitting(false);
-          }, 1000);
+            history.push("/");
+          }, 2000);
         }}
         validationSchema={registerSchema}
         >
