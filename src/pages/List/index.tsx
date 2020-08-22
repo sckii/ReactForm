@@ -57,7 +57,7 @@ function List() {
                   last={data.values.lastName}
                   age={data.values.age}
                   schooling={data.values.schooling}
-                  skills={data.values.skills.length}
+                  skills={data.skills}
                 />
               )
             })}

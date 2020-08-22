@@ -1,44 +1,24 @@
 {
   "registros": [
     {
-      "id": "7248b14e-ba82-4449-876f-f0220faae521",
+      "id": "1fb7cf51-3e3a-4d17-af07-201d503cfe3d",
       "values": {
-        "name": "sdfgsd",
-        "lastName": "fgsdf",
-        "age": "gsdfg",
-        "schooling": "sdfgsdf",
-        "skills": "gsdfgsdfg"
-      }
+        "name": "asdf",
+        "lastName": "asd",
+        "age": "fasd",
+        "schooling": "fasd"
+      },
+      "skills": 1
     },
     {
-      "id": "0aed215c-6484-4038-9b6f-672481c2491c",
+      "id": "3a0fd7c1-6691-4f9d-8b70-45ee67fb8fb8",
       "values": {
-        "name": "sdfgsdfg",
-        "lastName": "sdfgs",
-        "age": "dfgsdfg",
-        "schooling": "sdfsdfgg",
-        "skills": "sdfgsdfg"
-      }
-    },
-    {
-      "id": "e27f400f-69ee-4ea4-81ef-6a58b75251e4",
-      "values": {
-        "name": "sada",
-        "lastName": "sdasdf",
+        "name": "asdfasd",
+        "lastName": "fasdf",
         "age": "asdf",
-        "schooling": "asdfas",
-        "skills": "dfasdfasd"
-      }
-    },
-    {
-      "id": "cf131737-84cb-40af-9a8e-3f10970a5a2e",
-      "values": {
-        "name": "sdf",
-        "lastName": "gsdfg",
-        "age": "sdfg",
-        "schooling": "sdfgsdf",
-        "skills": "gsfdg"
-      }
+        "schooling": "asdfa"
+      },
+      "skills": 3
     }
   ]
 }

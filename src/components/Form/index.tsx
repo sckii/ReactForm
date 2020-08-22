@@ -21,9 +21,18 @@ const SubmitToken = () => {
 }
 
 const AddPerson = () => {
-  const [addSkill, setAddSkill] = useState([{
-    skills: [{}]
-  }])
+  const [skillNumber, setSkillNumber] = useState(1)
+  const [addSkill, setAddSkill] = useState([{}])
+
+  function addOne() {
+    setAddSkill([
+      ...addSkill,
+      {}
+    ])
+    setSkillNumber(skillNumber + 1)
+    console.log(skillNumber)
+
+  }
 
   const [createdWindow, setCreatedWindow] = useState(false)
 
@@ -33,18 +42,18 @@ const AddPerson = () => {
       lastName: '',
       age: '',
       schooling: '',
-      skills: '',
     },
     validationSchema:
       registerSchema,
 
     onSubmit: values => {
-    
+      console.log(skillNumber)
       setCreatedWindow(!createdWindow)
       setTimeout(() => {
       axios.post('http://localhost:4000/registros', {
         "id": uuid(),
-        values
+        values,
+        skills: skillNumber
       }).then(res => {
         console.log(res)
       })
@@ -105,17 +114,18 @@ const AddPerson = () => {
         </Col>
       </Form.Row>
 
-
-          <Button variant="link"> + Habilidade </Button>
-          <Form.Control 
-            required
-            placeholder="habilidades" 
-            id="skills"
-            name="skills"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.skills}
-          />
+          <Button onClick={addOne} variant="link"> + Habilidade </Button>
+          { addSkill.map((skill, index) => {
+            return (
+              <Form.Control 
+                required
+                key={index}
+                placeholder="habilidades" 
+                id="skills"
+                name="skills"
+                type="text"
+              />)
+          })}
        
 
       <Button type="submit">Registrar</Button>

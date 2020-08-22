@@ -13,9 +13,6 @@ const registerSchema = yup.object().shape({
   schooling: yup
     .string()
     .required(),
-  skills: yup
-    .string()
-    .required()
 })
 
 export { registerSchema }
