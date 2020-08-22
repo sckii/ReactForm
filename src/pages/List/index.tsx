@@ -8,7 +8,6 @@ import {registros} from '../../data/db.json'
 
 import axios from 'axios'
 import AddPerson from '../../components/Form';
-import { useFormikContext } from 'formik';
 
 
 function List() {

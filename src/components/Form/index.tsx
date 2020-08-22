@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { useFormik, useFormikContext } from 'formik'
+import { useFormik } from 'formik'
 
 import { registerSchema } from '../../utils/yup'
 import { Button, Col, Form, Alert } from 'react-bootstrap';
@@ -40,7 +40,7 @@ const AddPerson = () => {
       registerSchema,
 
     onSubmit: values => {
-      console.log(skillNumber)
+
       setCreatedWindow(!createdWindow)
       setTimeout(() => {
       axios.post('http://localhost:4000/registros', {
@@ -58,7 +58,7 @@ const AddPerson = () => {
     <PageContainer>
     { createdWindow === false ? <></> : <Alert variant="success"> Cadastrado </Alert>}
 
-    <Form onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit}>
       { trueOf && formik.errors.name && <Alert variant="danger"> {formik.errors.name} </Alert>}
       { trueOf && formik.errors.lastName && <Alert variant="danger"> {formik.errors.lastName} </Alert>}
       { trueOf && formik.errors.age && <Alert variant="danger"> {formik.errors.age} </Alert>}
@@ -66,6 +66,7 @@ const AddPerson = () => {
       <Form.Row>
         <Col>
           <Form.Control 
+            required
             placeholder="Nome" 
             id="name"
             name="name"
@@ -76,7 +77,7 @@ const AddPerson = () => {
         </Col>
         <Col>
           <Form.Control 
-            
+            required
             placeholder="Sobrenome" 
             id="lastName"
             name="lastName"
@@ -89,7 +90,7 @@ const AddPerson = () => {
       <Form.Row>
         <Col>
           <Form.Control 
-            
+            required
             placeholder="Idade" 
             id="age"
             name="age"
@@ -100,7 +101,7 @@ const AddPerson = () => {
         </Col>
         <Col>
           <Form.Control 
-            
+            required
             placeholder="Escolaridade" 
             id="schooling"
             name="schooling"
@@ -127,7 +128,7 @@ const AddPerson = () => {
 
       <Button onClick={trueOfCourse} type="submit" variant="outline-dark"> Cadastrar </Button>
       
-    </Form>
+    </form>
     
     </PageContainer>
   )
