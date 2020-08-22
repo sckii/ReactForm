@@ -4,8 +4,12 @@ export const ListContainer = styled.div `
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 100%;
-  margin-left: 20%;
-  margin-right: 20%;
+  max-width: 330px;
+`
 
+export const AlignCenter = styled.div `
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 `

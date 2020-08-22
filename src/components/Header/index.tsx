@@ -10,20 +10,13 @@ interface Props {
   pageName: string;
 }
 
-const Header: React.FC<Props> = ({ linkName, buttonName, pageName }) => {
+const Header: React.FC<Props> = () => {
   return (
     <HeaderContainer>  
       <Container>
-        
           <Col xs={9} style={{ "display":"flex" }}> 
-            <Title><h1>{ pageName }</h1></Title> 
+            <Title><h1>Listagem</h1></Title> 
           </Col>
-          <Col style={{ "display":"flex" }}> 
-            <Link to={ linkName } >
-              <Button variant="dark"> {buttonName} </Button>
-            </Link> 
-          </Col>
-
       </Container>
     </HeaderContainer>
   );

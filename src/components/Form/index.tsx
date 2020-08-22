@@ -19,11 +19,12 @@ interface Values {
 
 const FormValidation = () => {
   const [visible, setVisible] = useState(false)
+  const [skillBox, setSkillBox] = useState([
+    { skills: '' }
+  ])
   
   let history = useHistory()
-    
   
-
   return (
     <PageContainer>
       { visible === true ? <Alert variant='success'> Registrado com sucesso </Alert> : <></>}
@@ -38,9 +39,9 @@ const FormValidation = () => {
         onSubmit={(
           values: Values,
           { setSubmitting }: FormikHelpers<Values>
-        ) => {
-          setVisible(!visible);
-          setTimeout(() => {
+          ) => {
+            setVisible(!visible);
+            setTimeout(() => {
             const { name, lastName, age, schooling, skills} = values
             
             axios.post('http://localhost:4000/registros', {
@@ -54,7 +55,6 @@ const FormValidation = () => {
               console.log(res)
             })
             setSubmitting(false);
-            history.push("/");
           }, 2000);
         }}
         validationSchema={registerSchema}
@@ -96,21 +96,21 @@ const FormValidation = () => {
               />
             </Col>
           </Row>
-          <Row>  
-            <Col>
-              <Field
-                required  
-                style={{"margin": '0.2rem', "resize":"none", "height": "10rem", "width":"100%"}} 
-                as="textarea" 
-                id="skills"
-                name="skills"
-                placeholder="Habilidades"
+          <Button variant="link" type="button"> + Habilidade </Button>  
+            <Row>  
+              <Col>
+                <Field
+                  required  
+                  as="input" 
+                  id="skills"
+                  name="skills"
+                  placeholder="Habilidade"
                 />
-            </Col>
-          </Row>
+              </Col>
+            </Row>    
           <Row>
-            <Col style={{"margin": '0.2rem'}}>
-              <Button variant='dark' type='submit'> Enviar </Button>
+            <Col style={{"margin": '1.8rem'}}>
+              <Button variant='outline-dark' type='submit'> Enviar </Button>
             </Col>
           </Row>
         </Form>
