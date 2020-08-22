@@ -9,17 +9,6 @@ import axios from 'axios';
 
 import {uuid} from 'uuidv4'
 
-const SubmitToken = () => {
-  
-
-  const { values, submitForm } = useFormikContext()
-  React.useEffect(() => {
-    submitForm()
-  }, [values, submitForm])
-
-  return null
-}
-
 const AddPerson = () => {
   const [skillNumber, setSkillNumber] = useState(1)
   const [addSkill, setAddSkill] = useState([{}])
@@ -128,7 +117,8 @@ const AddPerson = () => {
           })}
        
 
-      <Button type="submit">Registrar</Button>
+      <Button type="submit" variant="outline-dark"> Cadastrar </Button>
+      
     </Form>
     
     </PageContainer>

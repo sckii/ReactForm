@@ -34,7 +34,7 @@ function List() {
       <Header />
     <Col>
       <AlignCenter>
-        { open === false ? <Button onClick={openOrCloseWindow} variant="dark" >Cadastrar</Button> : <> </>}
+        { open === false ? <Button onClick={openOrCloseWindow} variant="dark" >Cadastrar usuário </Button> : <> </>}
         <br/>
         { open === false ? <></> : <AddPerson />}
       { data.length !== 0 ? 

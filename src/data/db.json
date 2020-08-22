@@ -1,24 +1,5 @@
 {
   "registros": [
-    {
-      "id": "1fb7cf51-3e3a-4d17-af07-201d503cfe3d",
-      "values": {
-        "name": "asdf",
-        "lastName": "asd",
-        "age": "fasd",
-        "schooling": "fasd"
-      },
-      "skills": 1
-    },
-    {
-      "id": "3a0fd7c1-6691-4f9d-8b70-45ee67fb8fb8",
-      "values": {
-        "name": "asdfasd",
-        "lastName": "fasdf",
-        "age": "asdf",
-        "schooling": "asdfa"
-      },
-      "skills": 3
-    }
+    
   ]
 }
