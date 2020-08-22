@@ -1,5 +1,12 @@
 {
   "registros": [
-    
+    {
+      "id": "fbe896f4-196a-4b0d-9a3e-0f6826b5fca6",
+      "name": "asdf",
+      "lastName": "asdf",
+      "age": "asdf",
+      "schooling": "asdf",
+      "skills": "asdfasdf"
+    }
   ]
 }

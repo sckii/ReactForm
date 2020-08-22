@@ -1,123 +1,93 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-import { Formik, FormikHelpers, Field, Form } from 'formik';
+import { useFormik } from 'formik'
 
 import { registerSchema } from '../../utils/yup'
-import { Button, Row, Col, Alert } from 'react-bootstrap';
-import axios from 'axios';
-import {uuid} from 'uuidv4'
+import { Button, Col, Form } from 'react-bootstrap';
 import { PageContainer } from './styles';
-import { useHistory } from 'react-router-dom';
 
-interface Values {
-  name: string;
-  lastName: string;
-  age: string;
-  schooling: string;
-  skills: string
-}
+const AddPerson = () => {
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      lastName: '',
+      age: '',
+      schooling: '',
+      skills: '',
+    },
+    validationSchema:
+      registerSchema,
 
-const FormValidation = () => {
-  const [visible, setVisible] = useState(false)
-  const [skillBox, setSkillBox] = useState([
-    { skills: '' }
-  ])
-  
-  let history = useHistory()
-  
+    onSubmit: values => {
+      alert(JSON.stringify(values, null, 2))
+    }
+  })
   return (
     <PageContainer>
-      { visible === true ? <Alert variant='success'> Registrado com sucesso </Alert> : <></>}
-      <Formik
-        initialValues={{
-          name: '',
-          lastName: '',
-          age: '',
-          schooling: '',
-          skills: '',
-        }}
-        onSubmit={(
-          values: Values,
-          { setSubmitting }: FormikHelpers<Values>
-          ) => {
-            setVisible(!visible);
-            setTimeout(() => {
-            const { name, lastName, age, schooling, skills} = values
-            
-            axios.post('http://localhost:4000/registros', {
-              "id": uuid(),
-              "name": name,
-              "lastName": lastName,
-              "age": age,
-              "schooling": schooling,
-              "skills": skills,
-            }).then(res => {
-              console.log(res)
-            })
-            setSubmitting(false);
-          }, 2000);
-        }}
-        validationSchema={registerSchema}
-        >
-        <Form>
-          <Row>  
-            <Col>
-              <Field 
-                id="name" 
-                name="name" 
-                placeholder="Nome"
-                required  
-              />
-            </Col>
-            <Col>       
-              <Field 
-                id="lastName"
-                name="lastName" 
-                placeholder="Sobrenome"
-                required  
-              />
-            </Col>
-          </Row>
-          <Row>  
-            <Col>
-              <Field
-                required  
-                id="age" 
-                name="age" 
-                placeholder="Idade"
-              />
-            </Col>
-            <Col>       
-              <Field
-                required  
-                id="schooling" 
-                name="schooling" 
-                placeholder="Escolaridade"    
-              />
-            </Col>
-          </Row>
-          <Button variant="link" type="button"> + Habilidade </Button>  
-            <Row>  
-              <Col>
-                <Field
-                  required  
-                  as="input" 
-                  id="skills"
-                  name="skills"
-                  placeholder="Habilidade"
-                />
-              </Col>
-            </Row>    
-          <Row>
-            <Col style={{"margin": '1.8rem'}}>
-              <Button variant='outline-dark' type='submit'> Enviar </Button>
-            </Col>
-          </Row>
-        </Form>
-      </Formik>
-      
-    </PageContainer> 
-  );
+    <Form onSubmit={formik.handleSubmit}>
+      <Form.Row>
+        <Col>
+          <Form.Control 
+            required
+            placeholder="Nome" 
+            id="name"
+            name="name"
+            type="text"
+            onChange={formik.handleChange}
+            value={formik.values.name}
+          />
+        </Col>
+        <Col>
+          <Form.Control 
+            required
+            placeholder="Sobrenome" 
+            id="lastName"
+            name="lastName"
+            type="text"
+            onChange={formik.handleChange}
+            value={formik.values.lastName}
+          />
+        </Col>
+      </Form.Row>
+      <Form.Row>
+        <Col>
+          <Form.Control 
+            required
+            placeholder="Idade" 
+            id="age"
+            name="age"
+            type="text"
+            onChange={formik.handleChange}
+            value={formik.values.age}
+          />
+        </Col>
+        <Col>
+          <Form.Control 
+            required
+            placeholder="Escolaridade" 
+            id="schooling"
+            name="schooling"
+            type="text"
+            onChange={formik.handleChange}
+            value={formik.values.schooling}
+          />
+        </Col>
+      </Form.Row>
+        <Button variant="link"> + Habilidade </Button>
+        <Form.Control 
+          required
+          placeholder="habilidades" 
+          id="skills"
+          name="skills"
+          type="text"
+          onChange={formik.handleChange}
+          value={formik.values.skills}
+        />  
+      <Button type="submit">Registrar</Button>
+    </Form>
+    </PageContainer>
+  )
 }
 
-export default FormValidation
+
+export default AddPerson
