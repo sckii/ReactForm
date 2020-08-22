@@ -1,12 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-import { useFormik } from 'formik'
+import { useFormik, useFormikContext } from 'formik'
 
 import { registerSchema } from '../../utils/yup'
-import { Button, Col, Form } from 'react-bootstrap';
+import { Button, Col, Form, Alert } from 'react-bootstrap';
 import { PageContainer } from './styles';
+import axios from 'axios';
+
+import {uuid} from 'uuidv4'
+
+const SubmitToken = () => {
+  
+
+  const { values, submitForm } = useFormikContext()
+  React.useEffect(() => {
+    submitForm()
+  }, [values, submitForm])
+
+  return null
+}
 
 const AddPerson = () => {
+  const [addSkill, setAddSkill] = useState([{
+    skills: [{}]
+  }])
+
+  const [createdWindow, setCreatedWindow] = useState(false)
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -19,11 +39,22 @@ const AddPerson = () => {
       registerSchema,
 
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2))
+    
+      setCreatedWindow(!createdWindow)
+      setTimeout(() => {
+      axios.post('http://localhost:4000/registros', {
+        "id": uuid(),
+        values
+      }).then(res => {
+        console.log(res)
+      })
+      
+      }, 1000)
     }
   })
   return (
     <PageContainer>
+    { createdWindow === false ? <></> : <Alert variant="success"> Cadastrado </Alert>}
     <Form onSubmit={formik.handleSubmit}>
       <Form.Row>
         <Col>
@@ -73,18 +104,23 @@ const AddPerson = () => {
           />
         </Col>
       </Form.Row>
-        <Button variant="link"> + Habilidade </Button>
-        <Form.Control 
-          required
-          placeholder="habilidades" 
-          id="skills"
-          name="skills"
-          type="text"
-          onChange={formik.handleChange}
-          value={formik.values.skills}
-        />  
+
+
+          <Button variant="link"> + Habilidade </Button>
+          <Form.Control 
+            required
+            placeholder="habilidades" 
+            id="skills"
+            name="skills"
+            type="text"
+            onChange={formik.handleChange}
+            value={formik.values.skills}
+          />
+       
+
       <Button type="submit">Registrar</Button>
     </Form>
+    
     </PageContainer>
   )
 }

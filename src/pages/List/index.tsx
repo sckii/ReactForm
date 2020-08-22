@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header';
 import ListComponent from '../../components/ListComponent';
-import { Table, Spinner, Row, Col, Container, Button } from 'react-bootstrap';
+import { Table, Col, Button } from 'react-bootstrap';
 import { ListContainer, AlignCenter } from './styles';
 
 import {registros} from '../../data/db.json'
 
 import axios from 'axios'
 import AddPerson from '../../components/Form';
+import { useFormikContext } from 'formik';
 
 
 function List() {
   const [open, setOpen] = useState(false)
   const [data, setData] = useState([])
+  
 
   function openOrCloseWindow () {
     setOpen(!open)
@@ -29,14 +31,10 @@ function List() {
 
   return (
     <>
-      <Header 
-        linkName="/register" 
-        buttonName="Registrar"
-        pageName="Lista"
-      />
+      <Header />
     <Col>
       <AlignCenter>
-        <Button onClick={openOrCloseWindow} variant="dark" >Cadastrar</Button>
+        { open === false ? <Button onClick={openOrCloseWindow} variant="dark" >Cadastrar</Button> : <> </>}
         <br/>
         { open === false ? <></> : <AddPerson />}
       { data.length !== 0 ? 
@@ -48,18 +46,18 @@ function List() {
                 <th>Sobrenome</th>
                 <th>Idade</th>
                 <th>Escolaridade</th>
-                <th>Habilidades</th>          
+                <th>Hab..</th>          
               </tr>
             </thead>
             {registros.map((data: any) => {
               return (
                 <ListComponent
                   key={data.id}
-                  name={data.name}
-                  last={data.lastName}
-                  age={data.age}
-                  schooling={data.schooling}
-                  skills={data.skills.length}
+                  name={data.values.name}
+                  last={data.values.lastName}
+                  age={data.values.age}
+                  schooling={data.values.schooling}
+                  skills={data.values.skills.length}
                 />
               )
             })}

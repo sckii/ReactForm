@@ -1,12 +1,44 @@
 {
   "registros": [
     {
-      "id": "fbe896f4-196a-4b0d-9a3e-0f6826b5fca6",
-      "name": "asdf",
-      "lastName": "asdf",
-      "age": "asdf",
-      "schooling": "asdf",
-      "skills": "asdfasdf"
+      "id": "7248b14e-ba82-4449-876f-f0220faae521",
+      "values": {
+        "name": "sdfgsd",
+        "lastName": "fgsdf",
+        "age": "gsdfg",
+        "schooling": "sdfgsdf",
+        "skills": "gsdfgsdfg"
+      }
+    },
+    {
+      "id": "0aed215c-6484-4038-9b6f-672481c2491c",
+      "values": {
+        "name": "sdfgsdfg",
+        "lastName": "sdfgs",
+        "age": "dfgsdfg",
+        "schooling": "sdfsdfgg",
+        "skills": "sdfgsdfg"
+      }
+    },
+    {
+      "id": "e27f400f-69ee-4ea4-81ef-6a58b75251e4",
+      "values": {
+        "name": "sada",
+        "lastName": "sdasdf",
+        "age": "asdf",
+        "schooling": "asdfas",
+        "skills": "dfasdfasd"
+      }
+    },
+    {
+      "id": "cf131737-84cb-40af-9a8e-3f10970a5a2e",
+      "values": {
+        "name": "sdf",
+        "lastName": "gsdfg",
+        "age": "sdfg",
+        "schooling": "sdfgsdf",
+        "skills": "gsfdg"
+      }
     }
   ]
 }
