@@ -12,7 +12,11 @@ import {uuid} from 'uuidv4'
 const AddPerson = () => {
   const [skillNumber, setSkillNumber] = useState(1)
   const [addSkill, setAddSkill] = useState([{}])
+  const [trueOf, setTrueOf] = useState(false)
 
+  function trueOfCourse() {
+    setTrueOf(!trueOf)
+  }
   function addOne() {
     setAddSkill([
       ...addSkill,
@@ -53,11 +57,15 @@ const AddPerson = () => {
   return (
     <PageContainer>
     { createdWindow === false ? <></> : <Alert variant="success"> Cadastrado </Alert>}
+
     <Form onSubmit={formik.handleSubmit}>
+      { trueOf && formik.errors.name && <Alert variant="danger"> {formik.errors.name} </Alert>}
+      { trueOf && formik.errors.lastName && <Alert variant="danger"> {formik.errors.lastName} </Alert>}
+      { trueOf && formik.errors.age && <Alert variant="danger"> {formik.errors.age} </Alert>}
+      { trueOf && formik.errors.schooling && <Alert variant="danger"> {formik.errors.schooling} </Alert>}
       <Form.Row>
         <Col>
           <Form.Control 
-            required
             placeholder="Nome" 
             id="name"
             name="name"
@@ -68,7 +76,7 @@ const AddPerson = () => {
         </Col>
         <Col>
           <Form.Control 
-            required
+            
             placeholder="Sobrenome" 
             id="lastName"
             name="lastName"
@@ -81,7 +89,7 @@ const AddPerson = () => {
       <Form.Row>
         <Col>
           <Form.Control 
-            required
+            
             placeholder="Idade" 
             id="age"
             name="age"
@@ -92,7 +100,7 @@ const AddPerson = () => {
         </Col>
         <Col>
           <Form.Control 
-            required
+            
             placeholder="Escolaridade" 
             id="schooling"
             name="schooling"
@@ -117,7 +125,7 @@ const AddPerson = () => {
           })}
        
 
-      <Button type="submit" variant="outline-dark"> Cadastrar </Button>
+      <Button onClick={trueOfCourse} type="submit" variant="outline-dark"> Cadastrar </Button>
       
     </Form>
     
